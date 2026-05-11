@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════
+   星宝 · 手绘太空手账 主题 v2
+   美学方向：儿童蜡笔素描本 × 深空探索
+   关键词：纸纹理 / 蜡笔触感 / 不完美 / 温暖
+   ══════════════════════════════════════ */
+
+@theme {
+  /* ── 核心色板 ── */
+  --color-paper:        #FBF7F0;
+  --color-paper-warm:   #F5EDDD;
+  --color-paper-dark:   #EBDFC9;
+  --color-space-deep:   #1B1A3B;
+  --color-space-mid:    #2D2B55;
+  --color-ink:          #2C2416;
+  --color-ink-light:    #6B5E4A;
+  --color-crayon-yellow:  #FFE566;
+  --color-crayon-coral:   #FF6B6B;
+  --color-crayon-sky:     #48B5E0;
+  --color-crayon-mint:    #4ECDC4;
+  --color-crayon-purple:  #7C6FF7;
+  --color-crayon-orange:  #FF9F43;
+  --color-crayon-pink:    #FDA7DF;
+  --color-star-glow:      #FFE893;
+}
+
+/* ── 纸纹理背景 ── */
+.paper-texture {
+  background-color: var(--color-paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(124,111,247,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 10%, rgba(72,181,224,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255,229,102,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 手绘虚线边框 ── */
+.sketch-border {
+  border: 2px dashed rgba(44,36,22,0.15);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.sketch-border-solid {
+  border: 2px solid rgba(44,36,22,0.12);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+/* ── 蜡笔文字阴影 ── */
+.crayon-shadow {
+  text-shadow: 2px 2px 0 rgba(124,111,247,0.15), -1px -1px 0 rgba(255,229,102,0.08);
+}
+
+/* ── 漂浮动画（升级版） ── */
+@keyframes float-sketch {
+  0%, 100% { transform: translateY(0) rotate(-0.5deg) scale(1); }
+  25% { transform: translateY(-8px) rotate(0.5deg) scale(1.02); }
+  75% { transform: translateY(-4px) rotate(-0.3deg) scale(0.98); }
+}
+.float-sketch { animation: float-sketch 4s ease-in-out infinite; }
+
+/* ── 星星散落动画 ── */
+@keyframes twinkle-sketch {
+  0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.3) rotate(15deg); }
+}
+
+@keyframes drift-slow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-20px, -30px); }
+}
+
+/* ── 蜡笔能量条 ── */
+.energy-bar-sketch {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-crayon-yellow) 0px,
+    var(--color-crayon-orange) 8px,
+    var(--color-crayon-coral) 16px,
+    var(--color-crayon-purple) 24px
+  );
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+.energy-bar-sketch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px, rgba(255,255,255,0.3) 2px, rgba(255,255,255,0.3) 3px
+  );
+  border-radius: 4px;
+}
+
+/* ── 蛋孵化（升级版） ── */
+@keyframes egg-crack-v2 {
+  0%   { transform: scale(1); filter: brightness(1) saturate(1); }
+  20%  { transform: scale(1.08) rotate(-2deg); filter: brightness(1.3) saturate(1.5); }
+  40%  { transform: scale(1.15) rotate(3deg); filter: brightness(1.8) saturate(2); }
+  60%  { transform: scale(1.05) rotate(-1deg); filter: brightness(2.2) saturate(2.5); }
+  100% { transform: scale(0.9) rotate(5deg); filter: brightness(3); opacity: 0; }
+}
+
+@keyframes star-emerge {
+  0%   { transform: scale(0) rotate(-45deg); opacity: 0; filter: blur(10px); }
+  50%  { transform: scale(1.3) rotate(8deg); opacity: 0.8; filter: blur(0); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+}
+
+/* ── 进化光晕 ── */
+@keyframes evolve-burst {
+  0%   { box-shadow: 0 0 0 0 rgba(255,229,102,0.8), 0 0 0 0 rgba(124,111,247,0.6); transform: scale(1); }
+  40%  { box-shadow: 0 0 60px 20px rgba(255,229,102,0.9), 0 0 120px 40px rgba(124,111,247,0.5); transform: scale(1.1); }
+  100% { box-shadow: 0 0 0 0 rgba(255,229,102,0), 0 0 0 0 rgba(124,111,247,0); transform: scale(1); }
+}
+
+/* ── 铅笔划线动画 ── */
+@keyframes pencil-draw {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+/* ── 抖动提示（蜡笔轻敲） ── */
+@keyframes wiggle-hint {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+/* ── 全局重置 ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { height: 100%; width: 100%; }
+body {
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 手绘标题字体 ── */
+.font-sketch {
+  font-family: 'STKaiti', 'KaiTi', '楷体', serif;
+  letter-spacing: 0.05em;
+}
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(44,36,22,0.12);
+  border-radius: 4px;
+}
+
+/* ── 网格纸背景（家长端） ── */
+.grid-paper {
+  background-color: #F9F7F3;
+  background-image:
+    linear-gradient(rgba(44,36,22,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44,36,22,0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ── 撕纸边缘效果 ── */
+.torn-edge {
+  position: relative;
+}
+.torn-edge::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background:
+    linear-gradient(135deg, transparent 33%, var(--color-paper) 33%),
+    linear-gradient(225deg, transparent 33%, var(--color-paper) 33%),
+    linear-gradient(315deg, transparent 33%, var(--color-paper) 33%),
+    linear-gradient(45deg, transparent 33%, var(--color-paper) 33%);
+  background-size: 16px 16px;
+}
