@@ -30,6 +30,12 @@ EVOLUTION_BRANCHES = {
     "engineer": {"name": "创造工程师", "description": "对科学、搭建和自然充满好奇", "visual": "机械化外观，手持工具"},
 }
 
+# ── 飞书集成 ──
+FEISHU_APP_ID = "cli_aa8832ca7d7b1be6"
+FEISHU_APP_SECRET = "c53dDSs7qq6ydanDsUag1dRMFheAUiMy"
+FEISHU_SPREADSHEET_TOKEN = "Jlc9sKyRjh25Odtz0XFcSnKwn2d"
+FEISHU_SHEET_ID = "1cdcf7"
+
 # ── 内容安全 ──
 FORBIDDEN_TOPICS = ["暴力", "色情", "自杀", "家庭隐私", "个人身份信息", "联系方式"]
 MAX_SAFE_RESPONSE_LENGTH = 300  # 单次回复最多字数

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星宝 - AI成长伙伴与天赋探测仪 | 高保真设计稿</title>
+<style>
+  :root {
+    --blue: #2563EB;
+    --blue-light: #DBEAFE;
+    --yellow: #F59E0B;
+    --yellow-light: #FEF3C7;
+    --pink: #EC4899;
+    --pink-light: #FCE7F3;
+    --green: #10B981;
+    --green-light: #D1FAE5;
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --text: #1E293B;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+    --shadow-card: inset 0 2px 0 rgba(255,255,255,0.8), 0 4px 16px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
+    --shadow-card-hover: 0 20px 48px rgba(0,0,0,0.08), inset 0 2px 0 rgba(255,255,255,0.9);
+    --shadow-btn: 0 4px 14px rgba(37,99,235,0.25), inset 0 1px 0 rgba(255,255,255,0.3);
+    --font-heading: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  /* ========== 导航栏 ========== */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.88); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.05); padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; }
+  .nav-logo .mascot-mini {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--yellow), #FBBF24);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+    box-shadow: 0 2px 8px rgba(245,158,11,0.3);
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--blue); outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+  .nav-cta {
+    background: var(--blue); color: #fff; border: none;
+    padding: 10px 22px; border-radius: 50px; font-size: 13px; font-weight: 600;
+    cursor: pointer; box-shadow: var(--shadow-btn); transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+  .nav-cta:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 101; }
+  .hamburger span { display: block; width: 24px; height: 2.5px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+  .hamburger:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+  .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    z-index: 99; list-style: none; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; color: var(--text); font-size: 20px; font-weight: 600; }
+
+  /* ========== 区块通用 ========== */
+  .section { padding: 100px 24px; }
+  .section-inner { max-width: 1160px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; padding: 5px 16px; border-radius: 50px;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .section-tag.blue { background: var(--blue-light); color: var(--blue); }
+  .section-tag.pink { background: var(--pink-light); color: var(--pink); }
+  .section-tag.yellow { background: var(--yellow-light); color: #92400E; }
+  .section-tag.green { background: var(--green-light); color: #059669; }
+  .section-title { font-size: 34px; font-weight: 800; text-align: center; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .section-desc { text-align: center; color: var(--text-muted); font-size: 15px; max-width: 560px; margin: 0 auto 56px; line-height: 1.7; }
+
+  /* ========== Hero Banner ========== */
+  .hero {
+    margin-top: 64px; padding: 80px 24px 100px; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #EFF6FF 0%, #FFF7ED 30%, #FEF3C7 60%, #FCE7F3 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+    top: -200px; right: -150px; border-radius: 50%;
+  }
+  .hero::after {
+    content: ''; position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(236,72,153,0.05) 0%, transparent 70%);
+    bottom: -120px; left: -80px; border-radius: 50%;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+
+  /* 星宝IP */
+  .hero-visual { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .mascot {
+    position: relative; width: 180px; height: 180px;
+    background: linear-gradient(145deg, #FFE082, #FFCC02);
+    border-radius: 50%;
+    box-shadow:
+      inset 0 -8px 0 rgba(0,0,0,0.06),
+      0 20px 48px rgba(245,158,11,0.25),
+      0 0 0 12px rgba(245,158,11,0.08),
+      0 0 80px rgba(245,158,11,0.12);
+    animation: mascotFloat 4s ease-in-out infinite;
+    z-index: 2; flex-shrink: 0;
+  }
+  @keyframes mascotFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .mascot .eye {
+    position: absolute; width: 24px; height: 28px; background: #1E293B; border-radius: 50%;
+    top: 48px;
+  }
+  .mascot .eye.left { left: 44px; }
+  .mascot .eye.right { right: 44px; }
+  .mascot .eye::after {
+    content: ''; position: absolute; width: 8px; height: 8px; background: #fff; border-radius: 50%;
+    top: 5px; left: 5px;
+  }
+  .mascot .mouth {
+    position: absolute; width: 34px; height: 15px;
+    border-bottom: 3.5px solid #1E293B; border-radius: 0 0 17px 17px;
+    top: 90px; left: 50%; transform: translateX(-50%);
+  }
+  .mascot .blush {
+    position: absolute; width: 20px; height: 12px; background: rgba(236,72,153,0.3); border-radius: 50%;
+    top: 82px;
+  }
+  .mascot .blush.left { left: 24px; }
+  .mascot .blush.right { right: 24px; }
+  .mascot .star-deco {
+    position: absolute; font-size: 18px; animation: starSpin 3s linear infinite;
+  }
+  @keyframes starSpin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.3); } 100% { transform: rotate(360deg) scale(1); } }
+  .mascot .star-deco.s1 { top: 8px; left: 16px; animation-delay: 0s; }
+  .mascot .star-deco.s2 { top: -12px; right: 24px; animation-delay: 1s; font-size: 14px; }
+  .mascot .star-deco.s3 { bottom: 12px; right: 8px; animation-delay: 2s; font-size: 12px; }
+  .mascot-glow {
+    position: absolute; width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%,100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  /* Hero文字 */
+  .hero-content { display: flex; flex-direction: column; gap: 18px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--pink); font-size: 14px; font-weight: 700; letter-spacing: 2px;
+  }
+  .hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--pink); border-radius: 1px; }
+  .hero-title { font-size: 48px; font-weight: 900; line-height: 1.15; letter-spacing: -1px; }
+  .hero-title .hl { color: var(--blue); }
+  .hero-subtitle { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 440px; }
+  .hero-trust {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    padding-top: 4px;
+  }
+  .trust-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.7); border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; color: var(--text-muted);
+  }
+  .trust-badge .tb-icon { font-size: 16px; }
+
+  /* Banner 数据卡片 */
+  .hero-stats-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-stat-card {
+    flex: 1; min-width: 100px;
+    background: rgba(255,255,255,0.75); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.9); border-radius: var(--radius-md);
+    padding: 14px 16px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+  .hero-stat-card .stat-num { font-size: 24px; font-weight: 800; color: var(--blue); }
+  .hero-stat-card .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Hero表单 */
+  .form-card {
+    background: var(--card); border-radius: var(--radius-xl);
+    padding: 28px 24px; max-width: 380px; width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1), inset 0 2px 0 rgba(255,255,255,0.9);
+    border: 2px solid rgba(255,255,255,0.6);
+    position: relative; margin-top: -20px; z-index: 1;
+  }
+  .form-card::after {
+    content: ''; position: absolute; inset: -2px; border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--blue), var(--pink), var(--yellow));
+    z-index: -1; opacity: 0.25; filter: blur(8px);
+  }
+  .form-card-title { font-size: 19px; font-weight: 700; text-align: center; margin-bottom: 4px; }
+  .form-card-subtitle { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 20px; }
+  .form-card-subtitle .free { color: var(--pink); font-weight: 700; }
+  .form-group { margin-bottom: 12px; }
+  .form-label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+  .form-label .required { color: var(--pink); }
+  .form-input, .form-select {
+    width: 100%; padding: 10px 12px; border: 2px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 14px; font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s; background: #F8FAFC;
+  }
+  .form-input:focus, .form-select:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(37,99,235,0.08); }
+  .gender-group { display: flex; gap: 10px; }
+  .gender-option { flex: 1; position: relative; }
+  .gender-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .gender-option label {
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    padding: 10px; border: 2px solid var(--border); border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 13px; transition: all 0.2s; background: #F8FAFC; width: 100%;
+  }
+  .gender-option label:hover { border-color: var(--blue); background: var(--blue-light); }
+  .gender-option input:checked + label { border-color: var(--blue); background: var(--blue-light); color: var(--blue); font-weight: 600; }
+  .gender-option input:focus-visible + label { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .form-submit {
+    width: 100%; padding: 12px; border: none; border-radius: 50px;
+    background: linear-gradient(135deg, var(--blue), #3B82F6);
+    color: #fff; font-size: 15px; font-weight: 700; cursor: pointer;
+    box-shadow: var(--shadow-btn); margin-top: 4px;
+    transition: transform 0.15s, box-shadow 0.15s; letter-spacing: 0.5px;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.35); }
+  .form-submit:active { transform: scale(0.97); }
+  .form-submit:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .form-note { text-align: center; margin-top: 10px; font-size: 11px; color: var(--text-muted); }
+
+  /* Toast提示 */
+  .toast {
+    position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+    padding: 14px 28px; border-radius: 50px; font-size: 14px; font-weight: 600;
+    z-index: 999; opacity: 0; transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(4px); }
+  .toast-success { background: #D1FAE5; color: #059669; border: 1px solid #A7F3D0; }
+  .toast-error { background: #FEE2E2; color: #DC2626; border: 1px solid #FECACA; }
+
+  /* Bouncing arrow */
+  .scroll-hint { text-align: center; margin-top: 40px; position: relative; z-index: 1; }
+  .scroll-hint span { display: inline-block; font-size: 20px; animation: bounce 2s infinite; color: var(--text-muted); }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+  /* ========== 焦虑共鸣区 ========== */
+  .pain-section { background: #fff; }
+  .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pain-card {
+    background: var(--card); border-radius: var(--radius-xl); padding: 32px 24px;
+    box-shadow: var(--shadow-card); text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid transparent;
+  }
+  .pain-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); }
+  .pain-card.card-blue { border-top-color: var(--blue); }
+  .pain-card.card-yellow { border-top-color: var(--yellow); }
+  .pain-card.card-pink { border-top-color: var(--pink); }
+  .pain-icon { font-size: 40px; margin-bottom: 12px; }
+  .pain-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .pain-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
+  .pain-solution {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--green-light); color: #059669; padding: 6px 16px;
+    border-radius: 50px; font-size: 12px; font-weight: 700;
+  }
+
+  /* ========== 核心机制 ========== */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .feature-card {
+    background: var(--card); border-radius: var(--radius-xl); padding: 44px 28px 32px;
+    text-align: center; box-shadow: var(--shadow-card);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+    position: relative;
+  }
+  .feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-card-hover); }
+  .feature-num {
+    position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .feature-num.blue { background: var(--blue); }
+  .feature-num.yellow { background: var(--yellow); }
+  .feature-num.pink { background: var(--pink); }
+  .feature-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 16px auto 20px; font-size: 32px;
+    box-shadow: inset 0 -4px 0 rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.06);
+  }
+  .feature-icon.blue { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); }
+  .feature-icon.yellow { background: linear-gradient(135deg, #FEF3C7, #FDE68A); }
+  .feature-icon.pink { background: linear-gradient(135deg, #FCE7F3, #FBCFE8); }
+  .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ========== 进化树 ========== */
+  .evo-section { background: #fff; }
+  .tree-container { display: flex; flex-direction: column; align-items: center; padding: 20px 0 40px; }
+  .tree-root {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--yellow), #FBBF24);
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+    box-shadow: 0 8px 24px rgba(245,158,11,0.3);
+    position: relative; z-index: 2;
+  }
+  .tree-stem { width: 6px; height: 40px; background: linear-gradient(to bottom, #FBBF24, #D97706); border-radius: 3px; }
+  .tree-connector {
+    display: flex; align-items: flex-start; justify-content: center;
+    width: 100%; max-width: 600px; height: 24px; position: relative;
+  }
+  .tree-connector::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(to right, #D97706, #FBBF24 20%, #FBBF24 80%, #D97706);
+    border-radius: 2px;
+  }
+  .tree-connector::after { content: ''; position: absolute; top: 0; left: 50%; width: 4px; height: 24px; background: #D97706; transform: translateX(-50%); border-radius: 2px; }
+  .tree-branches { display: flex; gap: 40px; align-items: flex-start; margin-top: 4px; }
+  .tree-branch { display: flex; flex-direction: column; align-items: center; }
+  .tree-branch-line { width: 4px; height: 28px; border-radius: 2px; }
+  .tree-branch-line.blue { background: var(--blue); }
+  .tree-branch-line.pink { background: var(--pink); }
+  .tree-branch-line.green { background: var(--green); }
+  .tree-node {
+    width: 155px; padding: 18px 14px; background: var(--card);
+    border-radius: var(--radius-lg); text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+    cursor: default; position: relative;
+  }
+  .tree-node:hover { transform: scale(1.06); box-shadow: var(--shadow-card-hover); z-index: 5; }
+  .tree-node .node-icon { font-size: 36px; margin-bottom: 6px; }
+  .tree-node .node-name { font-size: 15px; font-weight: 700; }
+  .tree-node .node-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .tree-level-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 10px; font-weight: 700; margin: 10px 0 6px;
+  }
+  .tree-level-badge.l10 { background: var(--blue-light); color: var(--blue); }
+  .tree-level-badge.l30 { background: #D1FAE5; color: #059669; }
+  .tree-sub-branches { display: flex; gap: 16px; }
+  .tree-sub-node {
+    width: 100px; padding: 12px 8px; background: #F8FAFC;
+    border-radius: var(--radius-md); text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); font-size: 12px;
+    transition: transform 0.2s, box-shadow 0.2s; cursor: default;
+  }
+  .tree-sub-node:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .tree-sub-node .sub-icon { font-size: 20px; margin-bottom: 3px; }
+  .tree-sub-node .sub-name { font-weight: 700; }
+
+  /* ========== 家长价值 ========== */
+  .parents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .radar-card {
+    background: var(--card); border-radius: var(--radius-xl);
+    padding: 32px; box-shadow: var(--shadow-card);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .radar-svg { width: 100%; max-width: 360px; }
+  .parents-content h3 { font-size: 28px; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
+  .parents-content .highlight { color: var(--pink); }
+  .parents-points { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .parents-points li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 15px 18px; background: #F8FAFC; border-radius: var(--radius-md);
+    font-size: 14px; line-height: 1.6;
+  }
+  .parents-points .point-icon { font-size: 20px; flex-shrink: 0; }
+  .price-row { display: flex; gap: 16px; margin-top: 24px; align-items: center; flex-wrap: wrap; }
+  .price-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg, var(--yellow-light), #FDE68A);
+    padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; color: #92400E;
+  }
+  .price-badge .big { font-size: 22px; color: var(--pink); }
+  .trust-row { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+  .trust-pill {
+    display: flex; align-items: center; gap: 5px;
+    padding: 7px 14px; background: #fff; border: 1px solid var(--border);
+    border-radius: 50px; font-size: 11px; color: var(--text-muted); font-weight: 500;
+  }
+
+  /* ========== 底部CTA ========== */
+  .cta-section {
+    background: linear-gradient(160deg, #1E40AF, #1D4ED8);
+    padding: 80px 24px; text-align: center; color: #fff; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
+    top: -100px; left: -80px; border-radius: 50%;
+  }
+  .cta-section .section-inner { position: relative; z-index: 1; }
+  .cta-section .section-title { color: #fff; }
+  .cta-section .section-desc { color: rgba(255,255,255,0.75); }
+  .cta-btn {
+    display: inline-block; padding: 16px 52px; border-radius: 50px;
+    background: #fff; color: var(--blue); font-size: 17px; font-weight: 700;
+    text-decoration: none; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 0.5px; margin-top: 8px;
+  }
+  .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(0,0,0,0.35); }
+  .cta-btn:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+  .cta-stars { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 16px; }
+
+  /* ========== 页脚 ========== */
+  .footer { background: #0F172A; color: rgba(255,255,255,0.45); text-align: center; padding: 28px 24px; font-size: 12px; }
+
+  /* ========== 滚动动画 ========== */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ========== 响应式 ========== */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .hero-visual { order: -1; }
+    .mascot { width: 150px; height: 150px; }
+    .mascot .eye { width: 20px; height: 24px; top: 40px; }
+    .mascot .eye.left { left: 36px; } .mascot .eye.right { right: 36px; }
+    .mascot .mouth { width: 28px; height: 12px; top: 74px; }
+    .mascot .blush { width: 16px; height: 10px; top: 68px; }
+    .mascot .blush.left { left: 20px; } .mascot .blush.right { right: 20px; }
+    .mascot-glow { width: 150px; height: 150px; }
+    .hero-title { font-size: 34px; }
+    .form-card { max-width: 420px; margin: -16px auto 0; }
+    .pain-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    .features-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    .parents-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tree-branches { gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .tree-sub-branches { flex-wrap: wrap; justify-content: center; }
+  }
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 50px 20px 60px; }
+    .hero-title { font-size: 28px; }
+    .hero-inner { gap: 28px; }
+    .section { padding: 60px 20px; }
+    .section-title { font-size: 24px; }
+    .form-card { padding: 22px 16px; max-width: 100%; margin: -12px auto 0; }
+    .tree-node { width: 120px; padding: 14px 10px; }
+    .tree-sub-node { width: 80px; padding: 10px 6px; font-size: 11px; }
+    .parents-content h3 { font-size: 22px; }
+    .mascot { width: 130px; height: 130px; }
+    .mascot .eye { width: 16px; height: 20px; top: 34px; }
+    .mascot .eye.left { left: 30px; } .mascot .eye.right { right: 30px; }
+    .mascot .mouth { width: 24px; height: 10px; top: 64px; }
+    .mascot .blush { width: 14px; height: 8px; top: 58px; }
+    .mascot .blush.left { left: 16px; } .mascot .blush.right { right: 16px; }
+    .mascot-glow { width: 130px; height: 130px; }
+    .hero-stats-row { gap: 8px; }
+    .hero-stat-card { padding: 10px 12px; }
+    .hero-stat-card .stat-num { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mascot, .scroll-hint span { animation: none; }
+    .mascot-glow { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .feature-card, .tree-node, .tree-sub-node, .pain-card, .form-submit, .nav-cta, .cta-btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== 导航栏 ========== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="mascot-mini">⭐</div> 星宝
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#features">核心机制</a></li>
+      <li><a href="#evolution">进化树</a></li>
+      <li><a href="#parents">家长价值</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">免费体验</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <ul class="mobile-menu" id="mobileMenu">
+    <li><a href="#home" onclick="closeMenu()">首页</a></li>
+    <li><a href="#features" onclick="closeMenu()">核心机制</a></li>
+    <li><a href="#evolution" onclick="closeMenu()">进化树</a></li>
+    <li><a href="#parents" onclick="closeMenu()">家长价值</a></li>
+    <li><a href="#join" onclick="closeMenu()">立即报名</a></li>
+  </ul>
+</nav>
+
+<!-- ========== Hero Banner ========== -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <!-- 左侧：文案内容 -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">AI时代 · 真正理解每个孩子</div>
+      <h1 class="hero-title">
+        别让孩子在<span class="hl">盲目试错</span>中<br>浪费<span class="hl">童年</span>
+      </h1>
+      <p class="hero-subtitle">
+        星宝是孩子的AI成长伙伴。孩子教、AI学，在互动中发现隐形天赋——<br>
+        每月29元，省下几千元盲目报班费。
+      </p>
+      <div class="hero-stats-row">
+        <div class="hero-stat-card">
+          <div class="stat-num">70级</div>
+          <div class="stat-label">深度进化体系</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="stat-num">3大分支</div>
+          <div class="stat-label">天赋转职系统</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="stat-num">6-12岁</div>
+          <div class="stat-label">适龄范围</div>
+        </div>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-badge"><span class="tb-icon">🎓</span> 加德纳多元智能理论</div>
+        <div class="trust-badge"><span class="tb-icon">🔒</span> 儿童隐私加密保护</div>
+        <div class="trust-badge"><span class="tb-icon">🏆</span> 费曼学习法实践</div>
+      </div>
+    </div>
+
+    <!-- 右侧：吉祥物 + 表单卡片叠加 -->
+    <div class="hero-visual">
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+        <div class="mascot-glow"></div>
+        <div class="mascot">
+          <div class="star-deco s1">✨</div>
+          <div class="star-deco s2">⭐</div>
+          <div class="star-deco s3">💫</div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="mouth"></div>
+          <div class="blush left"></div>
+          <div class="blush right"></div>
+        </div>
+      </div>
+      <!-- 报名表单 -->
+      <div class="form-card">
+        <div class="form-card-title">🎁 限时免费体验招募</div>
+        <div class="form-card-subtitle">首批<span class="free">500名</span>种子用户 · 解锁全部进化形态</div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">孩子年龄 <span class="required">*</span></label>
+            <select class="form-select" id="field-age" required>
+              <option value="">请选择年龄段</option>
+              <option>6-7岁</option><option>8-9岁</option>
+              <option>10-11岁</option><option>12岁及以上</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">所在城市 <span class="required">*</span></label>
+            <input class="form-input" type="text" id="field-city" placeholder="请输入所在城市" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">孩子性别 <span class="required">*</span></label>
+            <div class="gender-group">
+              <div class="gender-option">
+                <input type="radio" id="gender-boy" name="gender" value="boy" required>
+                <label for="gender-boy">👦 男孩</label>
+              </div>
+              <div class="gender-option">
+                <input type="radio" id="gender-girl" name="gender" value="girl" required>
+                <label for="gender-girl">👧 女孩</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">家长手机号 <span class="required">*</span></label>
+            <input class="form-input" type="tel" id="field-phone" placeholder="请输入11位手机号码" pattern="1[3-9]\d{9}" maxlength="11" required>
+          </div>
+          <button class="form-submit" type="submit" id="submit-btn">🚀 立即报名 · 免费体验</button>
+        </form>
+        <p class="form-note">🔒 信息加密存储，仅用于体验通知，绝不外泄</p>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>↓</span></div>
+</section>
+
+<!-- ========== 焦虑共鸣区 ========== -->
+<section class="section pain-section">
+  <div class="section-inner">
+    <div class="section-tag pink">家长的困扰</div>
+    <h2 class="section-title">你也在为这些问题焦虑吗？</h2>
+    <p class="section-desc">80/90后家长的共同心声——我们懂，星宝也准备好了答案。</p>
+    <div class="pain-grid">
+      <div class="pain-card card-blue reveal">
+        <div class="pain-icon">💸</div>
+        <div class="pain-title">报班试错成本太高</div>
+        <div class="pain-desc">钢琴、编程、绘画…一个个试过去，花了几千块，孩子还是说"不喜欢"。</div>
+        <div class="pain-solution">✨ 29元/月，AI精准发现天赋方向</div>
+      </div>
+      <div class="pain-card card-yellow reveal">
+        <div class="pain-icon">😞</div>
+        <div class="pain-title">孩子对学习提不起兴趣</div>
+        <div class="pain-desc">传统课程单向灌输，孩子被动接受，越来越抗拒。不知道他到底喜欢什么。</div>
+        <div class="pain-solution">✨ 孩子当老师教AI，主动输出激发兴趣</div>
+      </div>
+      <div class="pain-card card-pink reveal">
+        <div class="pain-icon">🔮</div>
+        <div class="pain-title">看不懂孩子的隐形天赋</div>
+        <div class="pain-desc">总觉得孩子有潜力，但说不清是什么。观察法太主观，错过黄金培养期。</div>
+        <div class="pain-solution">✨ 天赋雷达图，数据化呈现多元智能</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 核心机制 ========== -->
+<section class="section" id="features" style="background:#fff;">
+  <div class="section-inner">
+    <div class="section-tag blue">核心机制</div>
+    <h2 class="section-title">不是单向灌输，不是被动娱乐</h2>
+    <p class="section-desc">星宝让孩子成为老师，在教中学，在玩中成长——三大独创机制重新定义AI陪伴。</p>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-num blue">1</div>
+        <div class="feature-icon blue">🧑‍🏫</div>
+        <h3>反向引导 · 小老师模式</h3>
+        <p>星宝主动求教："今天学校有什么好玩的事？能教我新知识吗？"运用费曼学习法，输出倒逼输入，巩固知识、提升自信。</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-num yellow">2</div>
+        <div class="feature-icon yellow">🌱</div>
+        <h3>养成系 · 进化转职树</h3>
+        <p>每次互动积累"知识能量"，10级方向转职、30级领域聚焦、70级大师专精——星宝随孩子的兴趣进化，独一无二。</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-num pink">3</div>
+        <div class="feature-icon pink">📹</div>
+        <h3>实时视频 · 数字人交互</h3>
+        <p>Live2D实时驱动，星宝像视频通话一样与孩子面对面。卡通形象亲和，语速适配儿童，保护视力发育。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 进化树 ========== -->
+<section class="section evo-section" id="evolution">
+  <div class="section-inner">
+    <div class="section-tag yellow">进化体系</div>
+    <h2 class="section-title">天赋转职树 · 让每次对话都发现天赋</h2>
+    <p class="section-desc">孩子的兴趣偏好驱动星宝的进化方向——转职即诊断，成长数据可视化。</p>
+    <div class="tree-container">
+      <div class="tree-root">⭐</div>
+      <div class="tree-stem"></div>
+      <div style="margin:8px 0;"><span class="tree-level-badge l10">Lv.10 兴趣启蒙 · 方向转职</span></div>
+      <div class="tree-connector"></div>
+      <div class="tree-branches">
+        <div class="tree-branch reveal">
+          <div class="tree-node">
+            <div class="node-icon">🧠</div>
+            <div class="node-name">智识学者</div>
+            <div class="node-desc">偏好语数英、通识</div>
+          </div>
+          <div class="tree-branch-line blue"></div>
+          <div style="margin:4px 0;"><span class="tree-level-badge l30">Lv.30 领域聚焦</span></div>
+          <div class="tree-sub-branches">
+            <div class="tree-sub-node"><div class="sub-icon">📖</div><div class="sub-name">语言学家</div><div style="font-size:10px;color:#64748B;">故事与成语</div></div>
+            <div class="tree-sub-node"><div class="sub-icon">🔢</div><div class="sub-name">逻辑学家</div><div style="font-size:10px;color:#64748B;">数学与谜题</div></div>
+          </div>
+        </div>
+        <div class="tree-branch reveal">
+          <div class="tree-node">
+            <div class="node-icon">🎨</div>
+            <div class="node-name">艺术大师</div>
+            <div class="node-desc">偏好音乐、美术</div>
+          </div>
+          <div class="tree-branch-line pink"></div>
+          <div style="margin:4px 0;"><span class="tree-level-badge l30">Lv.30 领域聚焦</span></div>
+          <div class="tree-sub-branches">
+            <div class="tree-sub-node"><div class="sub-icon">🎵</div><div class="sub-name">音乐精灵</div><div style="font-size:10px;color:#64748B;">旋律与节奏</div></div>
+            <div class="tree-sub-node"><div class="sub-icon">🖼️</div><div class="sub-name">色彩画家</div><div style="font-size:10px;color:#64748B;">绘画与视觉</div></div>
+          </div>
+        </div>
+        <div class="tree-branch reveal">
+          <div class="tree-node">
+            <div class="node-icon">🔧</div>
+            <div class="node-name">创造工程师</div>
+            <div class="node-desc">偏好科学、编程、乐高</div>
+          </div>
+          <div class="tree-branch-line green"></div>
+          <div style="margin:4px 0;"><span class="tree-level-badge l30">Lv.30 领域聚焦</span></div>
+          <div class="tree-sub-branches">
+            <div class="tree-sub-node"><div class="sub-icon">🔬</div><div class="sub-name">小小科学家</div><div style="font-size:10px;color:#64748B;">实验与探索</div></div>
+            <div class="tree-sub-node"><div class="sub-icon">💻</div><div class="sub-name">代码巫师</div><div style="font-size:10px;color:#64748B;">编程与创造</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 家长价值主张 ========== -->
+<section class="section" id="parents" style="background:#fff;">
+  <div class="section-inner">
+    <div class="section-tag pink">家长价值</div>
+    <h2 class="section-title">从"盲目试错"到"精准发现"</h2>
+    <p class="section-desc">不只让孩子快乐成长，更让家长真正读懂孩子。</p>
+    <div class="parents-grid">
+      <div class="radar-card reveal">
+        <svg class="radar-svg" viewBox="0 0 300 300">
+          <polygon points="150,20 264,97 224,229 76,229 36,97" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+          <polygon points="150,55 232,112 204,203 96,203 68,112" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+          <polygon points="150,90 200,126 183,176 117,176 100,126" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+          <line x1="150" y1="150" x2="150" y2="20" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="150" y1="150" x2="264" y2="97" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="150" y1="150" x2="224" y2="229" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="150" y1="150" x2="76" y2="229" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="150" y1="150" x2="36" y2="97" stroke="#CBD5E1" stroke-width="1"/>
+          <polygon points="150,55 200,90 195,160 130,180 95,110" fill="rgba(37,99,235,0.18)" stroke="#2563EB" stroke-width="2.5"/>
+          <circle cx="150" cy="55" r="5" fill="#2563EB"/><circle cx="200" cy="90" r="5" fill="#2563EB"/>
+          <circle cx="195" cy="160" r="5" fill="#2563EB"/><circle cx="130" cy="180" r="5" fill="#2563EB"/>
+          <circle cx="95" cy="110" r="5" fill="#2563EB"/>
+          <text x="150" y="12" text-anchor="middle" font-size="11" fill="#64748B" font-weight="600">语言表达</text>
+          <text x="276" y="100" text-anchor="start" font-size="11" fill="#64748B" font-weight="600">数理逻辑</text>
+          <text x="230" y="245" text-anchor="start" font-size="11" fill="#64748B" font-weight="600">科学探索</text>
+          <text x="70" y="245" text-anchor="end" font-size="11" fill="#64748B" font-weight="600">艺术创造</text>
+          <text x="20" y="100" text-anchor="end" font-size="11" fill="#64748B" font-weight="600">社交情感</text>
+        </svg>
+      </div>
+      <div class="parents-content reveal">
+        <h3>用<span class="highlight">AI大数据</span>看见孩子的隐形天赋</h3>
+        <ul class="parents-points">
+          <li><span class="point-icon">📊</span><span><strong>天赋雷达图：</strong>系统记录孩子在各个维度的投入度、词汇丰富度、专注时长，生成多元智能分析报告。</span></li>
+          <li><span class="point-icon">💰</span><span><strong>省下试错成本：</strong>不再盲目报班试错，每月仅29元，帮家长省下数千元的试错费用。</span></li>
+          <li><span class="point-icon">🎓</span><span><strong>科学理论支撑：</strong>基于加德纳多元智能理论设计，拒绝伪科学，教育选择有据可依。</span></li>
+        </ul>
+        <div class="price-row">
+          <div class="price-badge"><span class="big">29元/月</span> 或 299元/年</div>
+          <div class="trust-row">
+            <div class="trust-pill">🔒 数据加密存储</div>
+            <div class="trust-pill">👨‍👩‍👧 仅家长可查看报告</div>
+            <div class="trust-pill">📋 合规备案</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 底部CTA ========== -->
+<section class="cta-section" id="join">
+  <div class="section-inner">
+    <h2 class="section-title">让星宝陪伴孩子成长的第一步</h2>
+    <p class="section-desc" style="margin-bottom:32px;">首批500名种子用户火热招募中 · 立即报名锁定3个月免费体验权益</p>
+    <a href="#home" class="cta-btn">🚀 立即报名 · 免费体验</a>
+    <p class="cta-stars">⭐ 已有328位家长为孩子预约了星宝 ⭐</p>
+  </div>
+</section>
+
+<!-- ========== 页脚 ========== -->
+<footer class="footer">© 2026 星宝 · AI成长伙伴与天赋探测仪 | 专注6-12岁少儿成长陪伴</footer>
+
+<!-- Toast提示 -->
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.querySelector('.hamburger').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.querySelector('.hamburger').classList.remove('open');
+}
+
+// Toast
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast toast-' + type + ' show';
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+
+// 表单提交
+function handleSubmit(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submit-btn');
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+
+  var gender = document.querySelector('input[name=gender]:checked');
+  var data = {
+    age: document.getElementById('field-age').value,
+    city: document.getElementById('field-city').value.trim(),
+    gender: gender ? gender.value : '',
+    phone: document.getElementById('field-phone').value.trim()
+  };
+
+  fetch('/api/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(res) {
+    if (res.ok) {
+      showToast('✅ 报名成功！我们将在3个工作日内与您联系', 'success');
+      document.getElementById('field-age').value = '';
+      document.getElementById('field-city').value = '';
+      document.getElementById('field-phone').value = '';
+      var radios = document.getElementsByName('gender');
+      for (var i = 0; i < radios.length; i++) radios[i].checked = false;
+    } else {
+      showToast(res.error || '提交失败，请重试', 'error');
+    }
+  })
+  .catch(function() {
+    showToast('网络异常，请稍后重试', 'error');
+  })
+  .finally(function() {
+    btn.disabled = false;
+    btn.textContent = '🚀 立即报名 · 免费体验';
+  });
+}
+
+// 滚动触发动画
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
