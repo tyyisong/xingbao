@@ -65,8 +65,9 @@ def append_row(age: str, city: str, gender: str, phone: str) -> dict:
     if not token:
         return {"ok": False, "error": "飞书认证失败"}
 
-    from datetime import datetime
-    submit_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    from datetime import datetime, timezone, timedelta
+    tz_china = timezone(timedelta(hours=8))
+    submit_time = datetime.now(tz_china).strftime("%Y-%m-%d %H:%M:%S")
 
     result = _feishu_post(
         f"/open-apis/sheets/v2/spreadsheets/{FEISHU_SPREADSHEET_TOKEN}/values_append",
